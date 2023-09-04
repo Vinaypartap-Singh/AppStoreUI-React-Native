@@ -1,4 +1,6 @@
 import {
+  Button,
+  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -8,7 +10,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { Bars3CenterLeftIcon, BellIcon } from "react-native-heroicons/solid";
+import {
+  Bars3CenterLeftIcon,
+  BellIcon,
+  ArrowDownTrayIcon,
+} from "react-native-heroicons/solid";
 import GradientButton from "../components/GradientButton";
 import GameCard from "../components/GameCard";
 
@@ -54,6 +60,46 @@ export default function StoreScreen() {
       image: require("../assets/images/altosAdventure.png"),
       downloads: "20k",
       stars: 4,
+    },
+  ];
+
+  // Top Action Games
+
+  const games = [
+    {
+      id: 1,
+      title: "Shadow Fight",
+      image: require("../assets/images/shadowFight.png"),
+      downloads: "20M",
+      stars: 4.5,
+    },
+    {
+      id: 2,
+      title: "Valor Arena",
+      image: require("../assets/images/valorArena.png"),
+      downloads: "10k",
+      stars: 3.4,
+    },
+    {
+      id: 3,
+      title: "Frag",
+      image: require("../assets/images/frag.png"),
+      downloads: "80k",
+      stars: 4.6,
+    },
+    {
+      id: 4,
+      title: "Zooba Wildlife",
+      image: require("../assets/images/zoobaGame.png"),
+      downloads: "40k",
+      stars: 3.5,
+    },
+    {
+      id: 4,
+      title: "Clash of Clans",
+      image: require("../assets/images/clashofclans.png"),
+      downloads: "20k",
+      stars: 4.2,
     },
   ];
 
@@ -136,6 +182,118 @@ export default function StoreScreen() {
               return <GameCard gameInfo={data} />;
             })}
           </ScrollView>
+        </View>
+
+        {/* Top Action Games */}
+
+        <View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingHorizontal: 20,
+              marginTop: 20,
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: "#0D163A",
+                fontSize: 23,
+              }}
+            >
+              Top Action Games
+            </Text>
+            <Button title="See All" />
+          </View>
+
+          <View>
+            <ScrollView
+              style={{ height: 320, paddingLeft: 20 }}
+              showsVerticalScrollIndicator={false}
+            >
+              {games.map((data) => {
+                return (
+                  <View style={{ marginTop: 20, flexDirection: "row" }}>
+                    <TouchableOpacity
+                      style={{
+                        flexDirection: "row",
+                        width: "100%",
+                        justifyContent: "space-between",
+                        paddingRight: 20,
+                        alignItems: "center",
+                      }}
+                    >
+                      <View style={{ flexDirection: "row" }}>
+                        <Image
+                          source={data.image}
+                          style={{ width: 100, height: 100, borderRadius: 10 }}
+                        />
+                        <View
+                          style={{
+                            paddingLeft: 20,
+                            justifyContent: "space-between",
+                            paddingVertical: 10,
+                          }}
+                        >
+                          <Text style={{ fontWeight: "bold" }}>
+                            {data.title}
+                          </Text>
+                          {/* Ratings & Game Information */}
+                          <View
+                            style={{
+                              marginTop: 10,
+                              flexDirection: "row",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Image
+                              source={require("../assets/images/fullStar.png")}
+                              style={{ width: 20, height: 20 }}
+                            />
+                            <Text
+                              style={{
+                                fontWeight: "bold",
+                                marginLeft: 10,
+                                marginTop: 1,
+                              }}
+                            >
+                              {data.stars} stars
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              marginTop: 10,
+                              flexDirection: "row",
+                              alignItems: "center",
+                            }}
+                          >
+                            <ArrowDownTrayIcon
+                              color={"rgba(9, 181, 211, 0.9)"}
+                              size={20}
+                            />
+                            <Text
+                              style={{
+                                fontWeight: "bold",
+                                marginLeft: 10,
+                                marginTop: 1,
+                              }}
+                            >
+                              {data.downloads} downloads
+                            </Text>
+                          </View>
+                        </View>
+                      </View>
+                      <View>
+                        <GradientButton value="Play" />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                );
+              })}
+            </ScrollView>
+          </View>
         </View>
       </SafeAreaView>
     </LinearGradient>
