@@ -103,6 +103,8 @@ export default function StoreScreen() {
     },
   ];
 
+  const [selectedGame, setSelectedGame] = useState(1);
+
   return (
     <LinearGradient
       colors={["rgba(58, 131, 244, 0.4)", "rgba(9, 181, 211, 0.4)"]}
@@ -138,7 +140,9 @@ export default function StoreScreen() {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {categories.map((cat) => {
                 if (cat == activeCategory) {
-                  return <GradientButton key={cat} value={cat} />;
+                  return (
+                    <GradientButton key={cat} value={cat} marginRight={15} />
+                  );
                 } else {
                   return (
                     <TouchableOpacity
@@ -210,22 +214,38 @@ export default function StoreScreen() {
 
           <View>
             <ScrollView
-              style={{ height: 320, paddingLeft: 20 }}
+              style={{ height: 320, paddingHorizontal: 20 }}
               showsVerticalScrollIndicator={false}
             >
               {games.map((data) => {
+                const bg =
+                  data.id === selectedGame
+                    ? "rgba(255,255,255,0.4)"
+                    : "transparent";
                 return (
-                  <View style={{ marginTop: 20, flexDirection: "row" }}>
+                  <View
+                    style={{
+                      marginTop: 20,
+                      flexDirection: "row",
+                    }}
+                  >
                     <TouchableOpacity
+                      onPress={() => setSelectedGame(data.id)}
                       style={{
                         flexDirection: "row",
                         width: "100%",
+                        backgroundColor: bg,
                         justifyContent: "space-between",
                         paddingRight: 20,
                         alignItems: "center",
+                        borderRadius: 15,
                       }}
                     >
-                      <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                        }}
+                      >
                         <Image
                           source={data.image}
                           style={{ width: 100, height: 100, borderRadius: 10 }}

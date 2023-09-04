@@ -8,7 +8,7 @@ export default function GradientButton(props) {
       colors={["rgba(9, 181, 211, 0.9)", "rgba(58, 131, 244, 0.9)"]}
       end={{ x: 1, y: 1 }}
       start={{ x: 0.1, y: 0.2 }}
-      style={{ borderRadius: 50, marginRight: 15 }}
+      style={{ borderRadius: 50, marginRight: props.marginRight }}
     >
       <TouchableOpacity
         style={{
